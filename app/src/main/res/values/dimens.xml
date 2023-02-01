@@ -33,4 +33,8 @@
     <dimen name="item_note_title_textSize">16sp</dimen>
     <dimen name="item_note_description_textSize">14sp</dimen>
 
+    <dimen name="detail_screen_image_height_size">250dp</dimen>
+    <dimen name="detail_screen_description_margin">8dp</dimen>
+    <dimen name="detail_screen_description_text_size">16sp</dimen>
+
 </resources>

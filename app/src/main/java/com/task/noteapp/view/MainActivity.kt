@@ -95,6 +95,18 @@ class MainActivity : AppCompatActivity() {
         val notesAdapter = NotesAdapter(this, noteList)
         rv_notes_list.adapter = notesAdapter
 
+        notesAdapter.setOnClickListener(object :
+            NotesAdapter.OnClickListener {
+            override fun onClick(position: Int) {
+                val intent = Intent(this@MainActivity, NoteDetailActivity::class.java)
+                intent.putExtra(
+                    EXTRA_NOTE_DETAILS,
+                    noteList[position]
+                ) // Passing the complete serializable data class to the detail activity using intent.
+                startActivity(intent)
+            }
+        })
+
 
         val editSwipeHandler = object : SwipeToEditCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

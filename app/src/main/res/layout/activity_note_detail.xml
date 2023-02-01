@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.NoteDetailActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_note_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_screen_image_height_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/detail_screen_image_placeholder"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/detail_screen_description_margin"
+        android:layout_marginTop="@dimen/detail_screen_description_margin"
+        android:layout_marginEnd="@dimen/detail_screen_description_margin"
+        android:textColor="@color/detail_screen_description_text_color"
+        android:textSize="@dimen/detail_screen_description_text_size"
+        tools:text="Note details" />
+
+    <TextView
+        android:id="@+id/tv_img_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/detail_screen_description_margin"
+        android:textColor="@color/detail_screen_description_text_color"
+        android:textSize="@dimen/detail_screen_description_text_size"
+        android:textStyle="bold"
+        tools:text="" />
+</LinearLayout>
