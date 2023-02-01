@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import com.task.noteapp.data.Note
 
-class DatabaseHandlerDatabaseHandler(context: Context) :
+class DatabaseHandler(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)  {
 
     companion object {

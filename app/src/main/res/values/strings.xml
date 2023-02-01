@@ -9,4 +9,7 @@
 
     <string name="note_text_no_note_found_yet_kindly_add_one">No Note Found Yet. Kindly add one.</string>
     <string name="image_content_description">image</string>
+
+    <string name="error_add_title">Please enter title</string>
+    <string name="error_add_description">Please enter description</string>
 </resources>
