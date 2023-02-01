@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">NoteApp</string>
+
+    <string name="edit_text_hint_title">Title</string>
+    <string name="edit_text_hint_description">Description</string>
+    <string name="edit_text_hint_image_url">Image url (optional)</string>
+    <string name="edit_text_hint_date">Date</string>
+    <string name="btn_text_save">Add Note</string>
+
+    <string name="note_text_no_note_found_yet_kindly_add_one">No Note Found Yet. Kindly add one.</string>
+    <string name="image_content_description">image</string>
+
+    <string name="error_add_title">Please enter title</string>
+    <string name="error_add_description">Please enter description</string>
+
+    <color name="circular_image_border_color">#757575</color>
+    <color name="item_note_description_text_color">#606060</color>
+
+    <color name="detail_screen_description_text_color">#757575</color>
+
+    <string name="delete">Delete</string>
+    <string name="delete_title">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
