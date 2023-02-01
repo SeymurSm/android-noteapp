@@ -17,4 +17,9 @@
     <color name="item_note_description_text_color">#606060</color>
 
     <color name="detail_screen_description_text_color">#757575</color>
+
+    <string name="delete">Delete</string>
+    <string name="delete_title">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

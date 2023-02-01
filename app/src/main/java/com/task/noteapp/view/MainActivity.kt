@@ -1,5 +1,7 @@
 package com.task.noteapp.view
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +16,7 @@ import com.task.noteapp.api.DatabaseHandler
 import com.task.noteapp.data.MainRepository
 import com.task.noteapp.data.Note
 import com.task.noteapp.utils.MainViewModelFactory
+import com.task.noteapp.utils.SwipeToDeleteCallback
 import com.task.noteapp.utils.SwipeToEditCallback
 import com.task.noteapp.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -58,11 +61,45 @@ class MainActivity : AppCompatActivity() {
             rv_notes_list.visibility = View.GONE
             tv_no_records_available.visibility = View.VISIBLE
         }
+    }
+
+    fun onDeleteClick(viewHolder: RecyclerView.ViewHolder, note: Note) {
+        val alert: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
+        alert.setTitle(getString(R.string.delete))
+        alert.setMessage(getString(R.string.delete_title))
+        alert.setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { dialog, which ->
+            val isDeleted = viewModel.deleteNote(note)
+
+            if (isDeleted > 0) {
+                val adapter = rv_notes_list.adapter as NotesAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+                setUpNotesList()
+                dialog.dismiss()
+            }
+        })
+        alert.setNegativeButton(getString(R.string.no),
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss()
+                setUpNotesList()
+            })
+        alert.show()
+    }
+
+    /**
+     * A function to populate the recyclerview to the UI.
+     */
+    private fun setupNotesRecyclerView(noteList: ArrayList<Note>) {
+        rv_notes_list.layoutManager = LinearLayoutManager(this)
+        rv_notes_list.setHasFixedSize(true)
+
+        val notesAdapter = NotesAdapter(this, noteList)
+        rv_notes_list.adapter = notesAdapter
+
 
         val editSwipeHandler = object : SwipeToEditCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val intent = Intent(applicationContext, AddNoteActivity::class.java)
-                intent.putExtra(MainActivity.EXTRA_NOTE_DETAILS, notesList[viewHolder.adapterPosition])
+                intent.putExtra(MainActivity.EXTRA_NOTE_DETAILS, noteList[viewHolder.adapterPosition])
                 startActivityForResult(
                     intent,
                     ADD_NOTE_ACTIVITY_REQUEST_CODE
@@ -75,17 +112,14 @@ class MainActivity : AppCompatActivity() {
         }
         val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
         editItemTouchHelper.attachToRecyclerView(rv_notes_list)
-    }
 
-    /**
-     * A function to populate the recyclerview to the UI.
-     */
-    private fun setupNotesRecyclerView(noteList: ArrayList<Note>) {
-        rv_notes_list.layoutManager = LinearLayoutManager(this)
-        rv_notes_list.setHasFixedSize(true)
-
-        val placesAdapter = NotesAdapter(this, noteList)
-        rv_notes_list.adapter = placesAdapter
+        val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                onDeleteClick(viewHolder, noteList[viewHolder.adapterPosition])
+            }
+        }
+        val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+        deleteItemTouchHelper.attachToRecyclerView(rv_notes_list)
     }
 
     companion object {

@@ -89,7 +89,8 @@ private var list: ArrayList<Note>
      * A function to delete the added note detail from the local storage.
      */
     fun removeAt(position: Int) {
-
+        list.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     /**

@@ -8,4 +8,8 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
     fun getNotesList(): ArrayList<Note> {
         return repository.getNotesList()
     }
+
+    fun deleteNote(note: Note): Int {
+        return repository.deleteNote(note)
+    }
 }
