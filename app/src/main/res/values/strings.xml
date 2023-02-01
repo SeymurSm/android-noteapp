@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">NoteApp</string>
+
+    <string name="edit_text_hint_title">Title</string>
+    <string name="edit_text_hint_description">Description</string>
+    <string name="edit_text_hint_image_url">Image url (optional)</string>
+    <string name="edit_text_hint_date">Date</string>
+    <string name="btn_text_save">Add Note</string>
+
+    <string name="note_text_no_note_found_yet_kindly_add_one">No Note Found Yet. Kindly add one.</string>
+    <string name="image_content_description">image</string>
 </resources>
