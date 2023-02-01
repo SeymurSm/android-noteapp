@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="GradientImageView">
-        <attr name="imageUrl" format="string" />
-        <attr name="imageHeight" format="dimension" />
-        <attr name="imageWidth" format="dimension" />
-        <attr name="gradientWidth" format="dimension" />
-    </declare-styleable>
-</resources>

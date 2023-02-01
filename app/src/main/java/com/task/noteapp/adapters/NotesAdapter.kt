@@ -49,7 +49,7 @@ private var list: ArrayList<Note>
 
         if (holder is MyViewHolder) {
             if(!model.imageUrl.isNullOrEmpty()) {
-                holder.itemView.giv_note_image.setImage(model.imageUrl)
+                //TODO: Load image
             }
             else
                 holder.itemView.giv_note_image.visibility = View.GONE
