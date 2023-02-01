@@ -81,8 +81,8 @@ private var list: ArrayList<Note>
     /**
      * A function to edit the added note detail and pass the existing details through intent.
      */
-    fun notifyEditItem(activity: Activity, position: Int, requestCode: Int) {
-
+    fun notifyEditItem(position: Int) {
+        notifyItemChanged(position) // Notify any registered observers that the item at position has changed.
     }
 
     /**

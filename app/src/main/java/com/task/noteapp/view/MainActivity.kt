@@ -14,6 +14,7 @@ import com.task.noteapp.api.DatabaseHandler
 import com.task.noteapp.data.MainRepository
 import com.task.noteapp.data.Note
 import com.task.noteapp.utils.MainViewModelFactory
+import com.task.noteapp.utils.SwipeToEditCallback
 import com.task.noteapp.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -57,6 +58,23 @@ class MainActivity : AppCompatActivity() {
             rv_notes_list.visibility = View.GONE
             tv_no_records_available.visibility = View.VISIBLE
         }
+
+        val editSwipeHandler = object : SwipeToEditCallback(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val intent = Intent(applicationContext, AddNoteActivity::class.java)
+                intent.putExtra(MainActivity.EXTRA_NOTE_DETAILS, notesList[viewHolder.adapterPosition])
+                startActivityForResult(
+                    intent,
+                    ADD_NOTE_ACTIVITY_REQUEST_CODE
+                ) // Activity is started with requestCode
+                val adapter = rv_notes_list.adapter as NotesAdapter
+                adapter.notifyEditItem(
+                    viewHolder.adapterPosition,
+                )
+            }
+        }
+        val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
+        editItemTouchHelper.attachToRecyclerView(rv_notes_list)
     }
 
     /**
@@ -68,10 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         val placesAdapter = NotesAdapter(this, noteList)
         rv_notes_list.adapter = placesAdapter
-
-
     }
-
 
     companion object {
         private const val ADD_NOTE_ACTIVITY_REQUEST_CODE = 1
