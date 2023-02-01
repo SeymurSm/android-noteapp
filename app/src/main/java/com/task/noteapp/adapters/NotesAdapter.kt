@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_note.view.*
 class NotesAdapter(private val context: Context,
 private var list: ArrayList<Note>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var onClickListener: View.OnClickListener? = null
+    private var onClickListener: OnClickListener? = null
 
     /**
      * Inflates the item views which is designed in xml layout file
@@ -64,10 +64,9 @@ private var list: ArrayList<Note>
 
 
             holder.itemView.setOnClickListener {
-
-//                if (onClickListener != null) {
-//                    onClickListener!!.onClick(position, model)
-//                }
+                if (onClickListener != null) {
+                    onClickListener!!.onClick(position)
+                }
             }
         }
     }
@@ -100,8 +99,8 @@ private var list: ArrayList<Note>
         this.onClickListener = onClickListener
     }
 
-    interface OnClickListener : View.OnClickListener {
-        fun onClick(position: Int, model: Note)
+    interface OnClickListener {
+        fun onClick(position: Int)
     }
 
     /**
