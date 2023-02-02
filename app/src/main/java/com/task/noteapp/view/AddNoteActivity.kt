@@ -75,7 +75,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
                             et_description.text.toString(),
                             et_image_url.text.toString(),
                             currentDate,
-                            if (editing) "edited" else ""
+                            if (editing) getString(R.string.note_status_edited) else ""
                         )
 
                         // Here we initialize the database handler class.

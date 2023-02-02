@@ -13,9 +13,7 @@
     <string name="error_add_title">Please enter title</string>
     <string name="error_add_description">Please enter description</string>
 
-    <color name="item_note_description_text_color">#606060</color>
-
-    <color name="detail_screen_description_text_color">#757575</color>
+    <string name="note_status_edited">edited</string>
 
     <string name="update">UPDATE</string>
     <string name="delete">Delete</string>

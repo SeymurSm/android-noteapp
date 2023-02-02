@@ -16,5 +16,8 @@
     <color name="item_note_divider">#e7eecc</color>
     <color name="item_edit_background">#24AE05</color>
     <color name="item_delete_background">#f44336</color>
+    <color name="item_note_description_text_color">#606060</color>
+
+    <color name="detail_screen_description_text_color">#757575</color>
 
 </resources>
