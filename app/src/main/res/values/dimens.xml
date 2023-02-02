@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
 
     <dimen name="edit_text_text_size">16sp</dimen>
     <dimen name="add_screen_til_marginTop">5dp</dimen>

@@ -1,6 +1,8 @@
 package com.task.noteapp.view
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -13,6 +15,7 @@ import com.task.noteapp.data.Note
 import com.task.noteapp.utils.AddNoteViewModelFactory
 import com.task.noteapp.viewmodels.AddNoteViewModel
 import kotlinx.android.synthetic.main.activity_add_note.*
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,6 +26,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
     lateinit var viewModel: AddNoteViewModel
     private var mNoteDetails: Note? = null
     private var editing:Boolean = false
+    private val PICK_IMAGE = 555
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
@@ -43,6 +47,18 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
             et_description.setText(mNoteDetails!!.description)
             et_image_url.setText(mNoteDetails!!.imageUrl)
             btn_save.text = getString(R.string.update)
+        }
+
+        ibPickImage.setOnClickListener {
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(
+                    intent,
+                    getString(R.string.text_select_picture)
+                ), PICK_IMAGE
+            )
         }
 
         btn_save.setOnClickListener(this)
@@ -95,6 +111,22 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+            if (android.R.attr.data != null
+                && data!!.data != null
+            ) {
+                val selectedImageUri: Uri = data.data!!
+                try {
+                    et_image_url.setText(selectedImageUri.toString())
+                } catch (e: IOException) {
+                    e.printStackTrace()
                 }
             }
         }
