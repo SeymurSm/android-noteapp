@@ -9,7 +9,7 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.task.noteapp.R
 
-class GradientImageView : FrameLayout  {
+class GradientImageView : FrameLayout {
 
     private var imageView: ImageView
     private var gradientView: View

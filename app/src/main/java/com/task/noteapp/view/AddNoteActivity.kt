@@ -1,10 +1,10 @@
 package com.task.noteapp.view
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.task.noteapp.R
 import com.task.noteapp.api.DatabaseHandler
@@ -14,14 +14,12 @@ import com.task.noteapp.utils.AddNoteViewModelFactory
 import com.task.noteapp.viewmodels.AddNoteViewModel
 import kotlinx.android.synthetic.main.activity_add_note.*
 import java.text.SimpleDateFormat
-
 import java.util.*
 
 class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
     /**
      * An variable to get an instance calendar using the default time zone and locale.
      */
-   // private lateinit var binding: ActivityMainBinding
     lateinit var viewModel: AddNoteViewModel
     private var mNoteDetails: Note? = null
     private var editing:Boolean = false
@@ -31,7 +29,6 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-        //binding = ActivityMainBinding.inflate(layoutInflater)
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // This is to use the home back button.
 
         if (intent.hasExtra(MainActivity.EXTRA_NOTE_DETAILS)) {
@@ -82,8 +79,6 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
                         )
 
                         // Here we initialize the database handler class.
-                        //val dbHandler = DatabaseHandler(this)
-
                         if (mNoteDetails == null) {
                             val result = viewModel.addNote(note)
 

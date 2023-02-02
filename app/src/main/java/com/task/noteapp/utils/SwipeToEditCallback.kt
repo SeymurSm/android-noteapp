@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.task.noteapp.R
 
-abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+abstract class SwipeToEditCallback(context: Context) :
+    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
     val editIcon = ContextCompat.getDrawable(context, R.drawable.ic_edit_white_24dp)
     val intrinsicWidth = editIcon!!.intrinsicWidth
@@ -18,7 +19,10 @@ abstract class SwipeToEditCallback(context: Context) : ItemTouchHelper.SimpleCal
     val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
 
-    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+    override fun getMovementFlags(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder
+    ): Int {
         /**
          * To disable "swipe" for specific item return 0 here.
          * For example:

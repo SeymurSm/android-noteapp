@@ -1,9 +1,9 @@
 package com.task.noteapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import com.task.noteapp.R
 import com.task.noteapp.data.Note
