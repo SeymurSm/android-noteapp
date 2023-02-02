@@ -19,29 +19,29 @@ class NoteDetailActivity : AppCompatActivity() {
         // This is used to align the xml view to this class
         setContentView(R.layout.activity_note_detail)
 
-        var noteDetailModel: Note? = null
+        var noteDetail: Note? = null
 
         if (intent.hasExtra(MainActivity.EXTRA_NOTE_DETAILS)) {
             // get the Serializable data model class with the details in it
-            noteDetailModel =
+            noteDetail =
                 intent.getSerializableExtra(MainActivity.EXTRA_NOTE_DETAILS) as Note
         }
 
-        if (noteDetailModel != null) {
+        if (noteDetail != null) {
 
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.title = noteDetailModel.title
+            supportActionBar!!.title = noteDetail.title
 
-            if (!noteDetailModel.imageUrl.isNullOrEmpty()) {
+            if (!noteDetail.imageUrl.isNullOrEmpty()) {
                 iv_note_image.visibility = View.VISIBLE
-                tv_img_url.text = noteDetailModel.imageUrl
+                tv_img_url.text = noteDetail.imageUrl
                 Picasso.get()
-                    .load(noteDetailModel.imageUrl)
+                    .load(noteDetail.imageUrl)
                     .resize(300, 300)
                     .centerCrop()
                     .into(iv_note_image)
             }
-            tv_description.text = noteDetailModel.description
+            tv_description.text = noteDetail.description
         }
     }
 
