@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NoteApp</string>
 
+    <string name="edit_text_view_title">Edit note</string>
     <string name="edit_text_hint_title">Title</string>
     <string name="edit_text_hint_description">Description</string>
     <string name="edit_text_hint_image_url">Image url (optional)</string>
@@ -16,6 +17,7 @@
 
     <color name="detail_screen_description_text_color">#757575</color>
 
+    <string name="update">UPDATE</string>
     <string name="delete">Delete</string>
     <string name="delete_title">Are you sure you want to delete?</string>
     <string name="yes">Yes</string>

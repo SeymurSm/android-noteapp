@@ -11,6 +11,7 @@
     app:cardCornerRadius="@dimen/item_note_cv_corner_radius"
     app:cardElevation="@dimen/item_note_cv_elevation"
     app:cardUseCompatPadding="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clDescContainer"
         android:layout_width="fill_parent"
@@ -23,10 +24,10 @@
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/activity_padding"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/giv_note_image"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/giv_note_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/giv_note_image"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -36,22 +37,22 @@
                 android:textColor="@color/primary_text_color"
                 android:textSize="@dimen/item_note_title_textSize"
                 android:textStyle="bold"
-                tools:text="Title" />
+                tools:text="@string/edit_text_hint_title" />
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
                 android:textColor="@color/item_note_description_text_color"
                 android:textSize="@dimen/item_note_description_textSize"
-                android:maxLines="2"
-                tools:text="Description" />
+                tools:text="@string/edit_text_hint_description" />
 
             <View
                 android:id="@+id/vEditStatus"
                 android:layout_width="fill_parent"
                 android:layout_height="0.2dp"
-                android:background="#e7eecc" />
+                android:background="@color/item_note_divider" />
 
             <FrameLayout
                 android:layout_width="fill_parent"
@@ -63,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/item_note_description_text_color"
                     android:textSize="@dimen/item_note_date_textSize"
-                    tools:text="01-01-2022" />
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/tvEditStatus"
@@ -84,9 +85,9 @@
             android:layout_width="160dp"
             android:layout_height="fill_parent"
             android:foregroundGravity="right"
+            app:gradientWidth="160dp"
             app:imageHeight="80dp"
             app:imageWidth="80dp"
-            app:gradientWidth="160dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@id/ll_desc_container"

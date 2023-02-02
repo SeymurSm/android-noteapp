@@ -3,6 +3,9 @@ package com.task.noteapp.utils
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
+import android.provider.Settings
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +18,8 @@ abstract class SwipeToEditCallback(context: Context) :
     val intrinsicWidth = editIcon!!.intrinsicWidth
     val intrinsicHeight = editIcon!!.intrinsicHeight
     val background = ColorDrawable()
-    val backgroundColor = Color.parseColor("#24AE05")
+    @RequiresApi(Build.VERSION_CODES.M)
+    val backgroundColor = context.getColor(R.color.item_edit_background)
     val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
 
@@ -43,6 +47,7 @@ abstract class SwipeToEditCallback(context: Context) :
         return false
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onChildDraw(
         c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
         dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean

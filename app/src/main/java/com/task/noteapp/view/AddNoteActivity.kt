@@ -38,11 +38,11 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
 
         if (mNoteDetails != null) {
             editing = true
-            supportActionBar?.title = "Edit Note"
+            supportActionBar?.title = getString(R.string.edit_text_view_title)
             et_title.setText(mNoteDetails!!.title)
             et_description.setText(mNoteDetails!!.description)
             et_image_url.setText(mNoteDetails!!.imageUrl)
-            btn_save.text = "UPDATE"
+            btn_save.text = getString(R.string.update)
         }
 
         btn_save.setOnClickListener(this)

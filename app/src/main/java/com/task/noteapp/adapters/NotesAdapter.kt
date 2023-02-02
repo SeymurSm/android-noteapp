@@ -58,7 +58,7 @@ private var list: ArrayList<Note>
             holder.itemView.tvEditStatus.text = model.editStatus
 
             if(!model.editStatus.isNullOrEmpty()){
-                holder.itemView.vEditStatus.setBackgroundColor(R.color.edited_note_status)
+                holder.itemView.vEditStatus.setBackgroundColor(R.color.edited_note_status_color)
             }
 
 
