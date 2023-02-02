@@ -1,11 +1,13 @@
 package com.task.noteapp.view
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,9 +40,26 @@ class MainActivity : AppCompatActivity() {
         setupUI()
     }
 
-    private fun setupUI(){
+    // Call Back method  to get the Message form other Activity
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // check if the request code is same as what is passed  here it is 'ADD_PLACE_ACTIVITY_REQUEST_CODE'
+        if (requestCode == ADD_NOTE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                setUpNotesList()
+            } else {
+                Log.e("Activity", "Cancelled or Back Pressed")
+            }
+        }
+    }
+
+    private fun setupUI() {
         viewModel =
-            ViewModelProvider(this, MainViewModelFactory(MainRepository(DatabaseHandler(this)))).get(
+            ViewModelProvider(
+                this,
+                MainViewModelFactory(MainRepository(DatabaseHandler(this)))
+            ).get(
                 MainViewModel::class.java
             )
         setUpNotesList()
@@ -67,16 +86,18 @@ class MainActivity : AppCompatActivity() {
         val alert: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
         alert.setTitle(getString(R.string.delete))
         alert.setMessage(getString(R.string.delete_title))
-        alert.setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { dialog, which ->
-            val isDeleted = viewModel.deleteNote(note)
+        alert.setPositiveButton(
+            getString(R.string.yes),
+            DialogInterface.OnClickListener { dialog, which ->
+                val isDeleted = viewModel.deleteNote(note)
 
-            if (isDeleted > 0) {
-                val adapter = rv_notes_list.adapter as NotesAdapter
-                adapter.removeAt(viewHolder.adapterPosition)
-                setUpNotesList()
-                dialog.dismiss()
-            }
-        })
+                if (isDeleted > 0) {
+                    val adapter = rv_notes_list.adapter as NotesAdapter
+                    adapter.removeAt(viewHolder.adapterPosition)
+                    setUpNotesList()
+                    dialog.dismiss()
+                }
+            })
         alert.setNegativeButton(getString(R.string.no),
             DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
@@ -111,7 +132,10 @@ class MainActivity : AppCompatActivity() {
         val editSwipeHandler = object : SwipeToEditCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val intent = Intent(applicationContext, AddNoteActivity::class.java)
-                intent.putExtra(MainActivity.EXTRA_NOTE_DETAILS, noteList[viewHolder.adapterPosition])
+                intent.putExtra(
+                    MainActivity.EXTRA_NOTE_DETAILS,
+                    noteList[viewHolder.adapterPosition]
+                )
                 startActivityForResult(
                     intent,
                     ADD_NOTE_ACTIVITY_REQUEST_CODE
@@ -133,6 +157,7 @@ class MainActivity : AppCompatActivity() {
         val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
         deleteItemTouchHelper.attachToRecyclerView(rv_notes_list)
     }
+
 
     companion object {
         private const val ADD_NOTE_ACTIVITY_REQUEST_CODE = 1

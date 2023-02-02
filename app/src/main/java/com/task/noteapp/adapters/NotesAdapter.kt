@@ -1,9 +1,7 @@
 package com.task.noteapp.adapters
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +42,7 @@ private var list: ArrayList<Note>
      * of the given type. You can either create a new View manually or inflate it from an XML
      * layout file.
      */
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
@@ -59,7 +58,7 @@ private var list: ArrayList<Note>
             holder.itemView.tvEditStatus.text = model.editStatus
 
             if(!model.editStatus.isNullOrEmpty()){
-                holder.itemView.vEditStatus.setBackgroundColor(Color.parseColor("#F5B041"))
+                holder.itemView.vEditStatus.setBackgroundColor(R.color.edited_note_status)
             }
 
 

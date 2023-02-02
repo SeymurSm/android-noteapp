@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.task.noteapp.data.Note
 
 class DatabaseHandler(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)  {
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_VERSION = 1 // Database version

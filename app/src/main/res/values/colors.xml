@@ -8,12 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#F4D03F</color>
-    <color name="colorPrimaryDark">#F1C40F</color>
-    <color name="colorAccent">#F1C40F</color>
-
     <color name="primary_text_color">#212121</color>
     <color name="secondary_text_color">#9AA2AF</color>
     <color name="white_color">#FFFFFF</color>
     <color name="button_background_color">#F4D03F</color>
+    <color name="edited_note_status">#F5B041</color>
+
 </resources>
