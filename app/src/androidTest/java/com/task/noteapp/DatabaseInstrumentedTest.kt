@@ -52,8 +52,49 @@ class DatabaseInstrumentedTest {
             val notesFinal: List<Note> = mDataSource!!.getNotesList()
             assertThat(notesFinal.size, `is`(1))
             assertEquals(notesFinal[0].title, note.title)
-            println(notesFinal[0].description + "DESCRIPTIOJJM")
             assertEquals(notesFinal[0].description, note.description)
+        }
+
+        @Test
+        fun testDeleteNote() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(2, "Title", "Description", "image_url", currentDate, "")
+            mDataSource!!.addNote(note)
+            mDataSource!!.deleteNote(note)
+            val notes: List<Note> = mDataSource!!.getNotesList()
+            assertThat(notes.size, `is`(0))
+        }
+
+        @Test
+        fun testUpdateNote() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(2, "Title", "Description", "image_url", currentDate, "")
+            mDataSource!!.addNote(note)
+            note.description = "Description_updated"
+            mDataSource!!.updateNote(note)
+            val noteList = mDataSource!!.getNotesList()
+            assertEquals(noteList[noteList.size - 1].description, "Description_updated")
+        }
+
+        @Test
+        fun testEditStatus() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(2, "Title", "Description", "image_url", currentDate, "")
+            mDataSource!!.addNote(note)
+            note.description = "Updated description"
+        }
+
+        @Test
+        fun testAddAndDelete() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(2, "Title", "Description", "image_url", currentDate, "")
+            mDataSource!!.addNote(note)
+            mDataSource!!.deleteNote(note)
+            assertThat(mDataSource!!.getNotesList().size, `is`(0))
         }
     }
 }
