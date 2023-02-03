@@ -1,13 +1,17 @@
 package com.task.noteapp.view
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,9 +29,11 @@ import com.task.noteapp.utils.SwipeToEditCallback
 import com.task.noteapp.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     lateinit var viewModel: MainViewModel
+    private val WRITE_REQUEST_CODE = 333
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupUI()
+        // Nedded for instrumented testing
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            setupPermissions()
+        }
     }
 
     // Call Back method  to get the Message form other Activity
@@ -67,6 +77,11 @@ class MainActivity : AppCompatActivity() {
         setUpNotesList()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setupPermissions() {
+        hasStoragePermission(WRITE_REQUEST_CODE)
+    }
+
     /**
      * A function to get the list of note from local database.
      */
@@ -75,21 +90,21 @@ class MainActivity : AppCompatActivity() {
         viewModel.getNotesList()
 
         viewModel.noteList.observe(this, Observer {
-                if (it != null) {
-                    Log.d(TAG, "notesList: $it")
-                    rv_notes_list.visibility = View.VISIBLE
-                    tv_no_records_available.visibility = View.GONE
-                    setupNotesRecyclerView(viewModel.noteList.value!!)
-                } else {
-                    rv_notes_list.visibility = View.GONE
-                    tv_no_records_available.visibility = View.VISIBLE
-                    Toast.makeText(
-                        this,
-                        getString(R.string.error_fetching_data),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+            if (it != null) {
+                Log.d(TAG, "notesList: $it")
+                rv_notes_list.visibility = View.VISIBLE
+                tv_no_records_available.visibility = View.GONE
+                setupNotesRecyclerView(viewModel.noteList.value!!)
+            } else {
+                rv_notes_list.visibility = View.GONE
+                tv_no_records_available.visibility = View.VISIBLE
+                Toast.makeText(
+                    this,
+                    getString(R.string.error_fetching_data),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     fun onDeleteClick(viewHolder: RecyclerView.ViewHolder, note: Note) {
@@ -166,6 +181,19 @@ class MainActivity : AppCompatActivity() {
         }
         val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
         deleteItemTouchHelper.attachToRecyclerView(rv_notes_list)
+    }
+
+    private fun hasStoragePermission(requestCode: Int): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), requestCode)
+                false
+            } else {
+                true
+            }
+        } else {
+            true
+        }
     }
 
 
