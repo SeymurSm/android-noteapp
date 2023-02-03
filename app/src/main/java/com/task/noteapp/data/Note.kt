@@ -9,8 +9,8 @@ import java.io.Serializable
 data class Note(
     val id: Int,
     val title: String,
-    val imageUrl: String,
     var description: String,
+    val imageUrl: String,
     val date: String,
-    val editStatus: String
+    val editStatus: Int
 ) : Serializable

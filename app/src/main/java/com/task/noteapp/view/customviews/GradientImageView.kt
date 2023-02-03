@@ -1,4 +1,4 @@
-package com.task.noteapp.utils
+package com.task.noteapp.view.customviews
 
 import android.content.Context
 import android.util.AttributeSet

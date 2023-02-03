@@ -19,14 +19,15 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
+class AddNoteActivity : AppCompatActivity(), View.OnClickListener {
     /**
      * An variable to get an instance calendar using the default time zone and locale.
      */
     lateinit var viewModel: AddNoteViewModel
     private var mNoteDetails: Note? = null
-    private var editing:Boolean = false
+    private var editing: Boolean = false
     private val PICK_IMAGE = 555
+
     /**
      * This function is auto created by Android when the Activity Class is created.
      */
@@ -64,7 +65,10 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
         btn_save.setOnClickListener(this)
 
         viewModel =
-            ViewModelProvider(this, AddNoteViewModelFactory(MainRepository(DatabaseHandler(this)))).get(
+            ViewModelProvider(
+                this,
+                AddNoteViewModelFactory(MainRepository(DatabaseHandler(this)))
+            ).get(
                 AddNoteViewModel::class.java
             )
     }
@@ -91,7 +95,7 @@ class AddNoteActivity : AppCompatActivity(), View.OnClickListener  {
                             et_description.text.toString(),
                             et_image_url.text.toString(),
                             currentDate,
-                            if (editing) getString(R.string.note_status_edited) else ""
+                            if (editing) 1 else 0
                         )
 
                         // Here we initialize the database handler class.

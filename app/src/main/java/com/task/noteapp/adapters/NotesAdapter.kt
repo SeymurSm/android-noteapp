@@ -10,8 +10,9 @@ import com.task.noteapp.R
 import com.task.noteapp.data.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
-class NotesAdapter(private val context: Context,
-private var list: ArrayList<Note>
+class NotesAdapter(
+    private val context: Context,
+    private var list: ArrayList<Note>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var onClickListener: OnClickListener? = null
 
@@ -47,20 +48,17 @@ private var list: ArrayList<Note>
         val model = list[position]
 
         if (holder is MyViewHolder) {
-            if(!model.imageUrl.isNullOrEmpty()) {
+            if (!model.imageUrl.isNullOrEmpty()) {
                 holder.itemView.giv_note_image.setImage(model.imageUrl)
-            }
-            else
+            } else
                 holder.itemView.giv_note_image.visibility = View.GONE
             holder.itemView.tvTitle.text = model.title
             holder.itemView.tvDescription.text = model.description
             holder.itemView.tvAddDate.text = model.date
-            holder.itemView.tvEditStatus.text = model.editStatus
-
-            if(!model.editStatus.isNullOrEmpty()){
-                holder.itemView.vEditStatus.setBackgroundColor(R.color.edited_note_status_color)
+            if (model.editStatus == 1) {
+                holder.itemView.tvEditStatus.text = context.getString(R.string.note_status_edited)
+                holder.itemView.vEditStatus.setBackgroundResource(R.color.edited_note_status_color)
             }
-
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {
@@ -69,6 +67,7 @@ private var list: ArrayList<Note>
             }
         }
     }
+
     /**
      * Gets the number of items in the list
      */

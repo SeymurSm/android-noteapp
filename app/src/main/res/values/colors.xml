@@ -12,7 +12,7 @@
     <color name="secondary_text_color">#9AA2AF</color>
     <color name="white_color">#FFFFFF</color>
     <color name="button_background_color">#F4D03F</color>
-    <color name="edited_note_status_color">#F5B041</color>
+    <color name="edited_note_status_color">#BB86FC</color>
     <color name="item_note_background">#FFFFFFFF</color>
     <color name="item_note_divider">#e7eecc</color>
     <color name="item_edit_background">#24AE05</color>

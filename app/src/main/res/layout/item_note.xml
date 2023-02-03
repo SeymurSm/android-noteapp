@@ -81,7 +81,7 @@
             </FrameLayout>
         </LinearLayout>
 
-        <com.task.noteapp.utils.GradientImageView
+        <com.task.noteapp.view.customviews.GradientImageView
             android:id="@+id/giv_note_image"
             android:layout_width="160dp"
             android:layout_height="fill_parent"
