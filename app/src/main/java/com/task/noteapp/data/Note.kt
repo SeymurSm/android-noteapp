@@ -12,5 +12,5 @@ data class Note(
     var description: String,
     val imageUrl: String,
     val date: String,
-    val editStatus: String
+    val editStatus: Int
 ) : Serializable

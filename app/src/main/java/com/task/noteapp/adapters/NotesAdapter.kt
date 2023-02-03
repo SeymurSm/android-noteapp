@@ -55,12 +55,10 @@ private var list: ArrayList<Note>
             holder.itemView.tvTitle.text = model.title
             holder.itemView.tvDescription.text = model.description
             holder.itemView.tvAddDate.text = model.date
-            holder.itemView.tvEditStatus.text = model.editStatus
-
-            if(!model.editStatus.isNullOrEmpty()){
-                holder.itemView.vEditStatus.setBackgroundColor(R.color.edited_note_status_color)
+            if(model.editStatus == 1) {
+                holder.itemView.tvEditStatus.text = context.getString(R.string.note_status_edited)
+                holder.itemView.vEditStatus.setBackgroundResource(R.color.edited_note_status_color)
             }
-
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {

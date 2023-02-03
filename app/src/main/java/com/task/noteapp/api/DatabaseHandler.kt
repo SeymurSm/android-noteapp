@@ -33,7 +33,7 @@ class DatabaseHandler(context: Context) :
                 + KEY_DESCRIPTION + " TEXT,"
                 + KEY_IMAGE_URL + " TEXT,"
                 + KEY_DATE + " TEXT,"
-                + KEY_EDIT_STATUS + " TEXT)"
+                + KEY_EDIT_STATUS + " INTEGER)"
                 )
         db?.execSQL(CREATE_NOTE_TABLE)
 
@@ -55,7 +55,7 @@ class DatabaseHandler(context: Context) :
         contentValues.put(KEY_DESCRIPTION, note.description) // NoteModelClass DESCRIPTION
         contentValues.put(KEY_IMAGE_URL, note.imageUrl) // NoteModelClass IMAGE
         contentValues.put(KEY_DATE, note.date) // NoteModelClass DATE
-        contentValues.put(KEY_EDIT_STATUS, note.editStatus) // NoteModelClass DATE
+        contentValues.put(KEY_EDIT_STATUS, 0) // NoteModelClass DATE
 
         // Inserting Row
         val result = db.insert(TABLE_NOTE, null, contentValues)
@@ -75,7 +75,7 @@ class DatabaseHandler(context: Context) :
 
         val selectQuery = "SELECT  * FROM $TABLE_NOTE" // Database select query
 
-        val db = this.readableDatabase
+        val db = this.writableDatabase
 
         try {
             val cursor: Cursor = db.rawQuery(selectQuery, null)
@@ -87,7 +87,7 @@ class DatabaseHandler(context: Context) :
                         cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)),
                         cursor.getString(cursor.getColumnIndex(KEY_IMAGE_URL)),
                         cursor.getString(cursor.getColumnIndex(KEY_DATE)),
-                        cursor.getString(cursor.getColumnIndex(KEY_EDIT_STATUS))
+                        cursor.getInt(cursor.getColumnIndex(KEY_EDIT_STATUS))
                     )
                     noteList.add(place)
 
@@ -111,7 +111,7 @@ class DatabaseHandler(context: Context) :
         contentValues.put(KEY_DESCRIPTION, note.description) // NoteModelClass DESCRIPTION
         contentValues.put(KEY_IMAGE_URL, note.imageUrl) // NoteModelClass IMAGE
         contentValues.put(KEY_DATE, note.date) // NoteModelClass DATE
-        contentValues.put(KEY_EDIT_STATUS, note.editStatus) // NoteModelClass DATE
+        contentValues.put(KEY_EDIT_STATUS, 1) // NoteModelClass DATE
 
         // Updating Row
         val success =

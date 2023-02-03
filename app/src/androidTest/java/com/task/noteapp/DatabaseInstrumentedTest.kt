@@ -47,13 +47,60 @@ class DatabaseInstrumentedTest {
         fun testAddNote() {
             val sdf = SimpleDateFormat("dd/MM/yyyy")
             val currentDate = sdf.format(Date())
-            var note = Note(2, "Title", "Description", "image_url", currentDate, "")
+            var note = Note(0, "Title", "Description", "image_url", currentDate, 0)
             mDataSource!!.addNote(note)
             val notesFinal: List<Note> = mDataSource!!.getNotesList()
             assertThat(notesFinal.size, `is`(1))
             assertEquals(notesFinal[0].title, note.title)
-            println(notesFinal[0].description + "DESCRIPTIOJJM")
             assertEquals(notesFinal[0].description, note.description)
+        }
+
+        @Test
+        fun testDeleteNote() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(0, "Title", "Description", "image_url", currentDate, 0)
+            mDataSource!!.addNote(note)
+            note = mDataSource!!.getNotesList()[0]
+            mDataSource!!.deleteNote(note)
+            val notes: List<Note> = mDataSource!!.getNotesList()
+            assertThat(notes.size, `is`(0))
+        }
+
+        @Test
+        fun testUpdateNote() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(0, "Title", "Description", "image_url", currentDate, 0)
+            mDataSource!!.addNote(note)
+            note = mDataSource!!.getNotesList()[0]
+            note.description = "Description_updated"
+            mDataSource!!.updateNote(note)
+            val noteList = mDataSource!!.getNotesList()
+            assertEquals(noteList[noteList.size - 1].description, "Description_updated")
+        }
+
+        @Test
+        fun testEditStatus() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(0, "Title", "Description", "image_url", currentDate, 0)
+            mDataSource!!.addNote(note)
+            note = mDataSource!!.getNotesList()[0]
+            note.description = "Updated description"
+            mDataSource!!.updateNote(note)
+            assertThat(mDataSource!!.getNotesList()[0].editStatus, `is`(1))
+        }
+
+        @Test
+        fun testAddAndDelete() {
+            val sdf = SimpleDateFormat("dd/MM/yyyy")
+            val currentDate = sdf.format(Date())
+            var note = Note(0, "Title", "Description", "image_url", currentDate, 0)
+            mDataSource!!.addNote(note)
+            note = mDataSource!!.getNotesList()[0]
+            mDataSource!!.deleteNote(note)
+            assertThat(mDataSource!!.getNotesList().size, `is`(0))
         }
     }
 }
