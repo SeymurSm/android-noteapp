@@ -37,6 +37,7 @@ class NoteDetailActivity : AppCompatActivity() {
                 tv_img_url.text = noteDetail.imageUrl
                 Picasso.get()
                     .load(noteDetail.imageUrl)
+                    .placeholder(R.drawable.ic_image)
                     .resize(300, 300)
                     .centerCrop()
                     .into(iv_note_image)

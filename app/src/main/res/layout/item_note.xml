@@ -6,7 +6,7 @@
     android:layout_height="90dp"
     android:layout_marginStart="@dimen/item_note_cv_main_marginStartEnd"
     android:layout_marginEnd="@dimen/item_note_cv_main_marginStartEnd"
-    android:background="@color/white_color"
+    android:background="@color/item_note_background"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/item_note_cv_corner_radius"
     app:cardElevation="@dimen/item_note_cv_elevation"
@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clDescContainer"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@color/item_note_background">
 
         <LinearLayout
             android:id="@+id/ll_desc_container"
