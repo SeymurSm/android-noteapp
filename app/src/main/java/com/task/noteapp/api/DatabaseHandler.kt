@@ -51,6 +51,7 @@ class DatabaseHandler(context: Context) :
         val db = this.writableDatabase
 
         val contentValues = ContentValues()
+        contentValues.put(KEY_ID, note.id) // NoteModelClass TITLE
         contentValues.put(KEY_TITLE, note.title) // NoteModelClass TITLE
         contentValues.put(KEY_DESCRIPTION, note.description) // NoteModelClass DESCRIPTION
         contentValues.put(KEY_IMAGE_URL, note.imageUrl) // NoteModelClass IMAGE
