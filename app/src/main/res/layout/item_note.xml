@@ -83,12 +83,12 @@
 
         <com.task.noteapp.view.customviews.GradientImageView
             android:id="@+id/giv_note_image"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/item_note_image_cotainer_width"
             android:layout_height="fill_parent"
             android:foregroundGravity="right"
-            app:gradientWidth="160dp"
-            app:imageHeight="80dp"
-            app:imageWidth="80dp"
+            app:gradientWidth="@dimen/item_note_image_cotainer_width"
+            app:imageHeight="@dimen/item_note_image_height"
+            app:imageWidth="@dimen/item_note_image_width"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@id/ll_desc_container"

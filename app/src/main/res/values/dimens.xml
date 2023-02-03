@@ -24,6 +24,9 @@
     <dimen name="item_note_cv_main_marginStartEnd">8dp</dimen>
     <dimen name="item_note_cv_corner_radius">3dp</dimen>
     <dimen name="item_note_cv_elevation">3dp</dimen>
+    <dimen name="item_note_image_cotainer_width">160dp</dimen>
+    <dimen name="item_note_image_width">80dp</dimen>
+    <dimen name="item_note_image_height">80dp</dimen>
 
     <dimen name="item_note_date_textSize">12sp</dimen>
     <dimen name="item_note_title_textSize">16sp</dimen>
