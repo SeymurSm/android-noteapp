@@ -66,6 +66,7 @@ class GradientImageView : FrameLayout {
         if (!url.isNullOrEmpty()) {
             Picasso.get()
                 .load(url)
+                .placeholder(R.drawable.ic_image)
                 .resize(imageWith.toInt(), imageHeight.toInt())
                 .centerCrop()
                 .into(imageView)

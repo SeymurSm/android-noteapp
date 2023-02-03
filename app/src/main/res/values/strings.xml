@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">NoteApp</string>
 
+    <string name="edit_text_view_title">Edit note</string>
     <string name="edit_text_hint_title">Title</string>
     <string name="edit_text_hint_description">Description</string>
-    <string name="edit_text_hint_image_url">Image url (optional)</string>
+    <string name="edit_text_hint_image_url">Image url (optional) paste uri or pick from gallery</string>
     <string name="btn_text_save">Add Note</string>
 
     <string name="note_text_no_note_found_yet_kindly_add_one">No Note Found Yet. Kindly add one.</string>
@@ -11,11 +12,13 @@
 
     <string name="error_add_title">Please enter title</string>
     <string name="error_add_description">Please enter description</string>
+    <string name="error_fetching_data">Error in fetching data</string>
 
-    <color name="item_note_description_text_color">#606060</color>
+    <string name="note_status_edited">edited</string>
 
-    <color name="detail_screen_description_text_color">#757575</color>
+    <string name="text_select_picture">Select Picture</string>
 
+    <string name="update">UPDATE</string>
     <string name="delete">Delete</string>
     <string name="delete_title">Are you sure you want to delete?</string>
     <string name="yes">Yes</string>

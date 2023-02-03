@@ -7,7 +7,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +26,7 @@ import com.task.noteapp.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    private val TAG = "MainActivity"
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 setUpNotesList()
             } else {
-                Log.e("Activity", "Cancelled or Back Pressed")
+                Log.e(TAG, "Cancelled or Back Pressed")
             }
         }
     }
@@ -70,16 +72,24 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setUpNotesList() {
 
-        val notesList = viewModel.getNotesList()
+        viewModel.getNotesList()
 
-        if (notesList.size > 0) {
-            rv_notes_list.visibility = View.VISIBLE
-            tv_no_records_available.visibility = View.GONE
-            setupNotesRecyclerView(notesList)
-        } else {
-            rv_notes_list.visibility = View.GONE
-            tv_no_records_available.visibility = View.VISIBLE
-        }
+        viewModel.noteList.observe(this, Observer {
+                if (it != null) {
+                    Log.d(TAG, "notesList: $it")
+                    rv_notes_list.visibility = View.VISIBLE
+                    tv_no_records_available.visibility = View.GONE
+                    setupNotesRecyclerView(viewModel.noteList.value!!)
+                } else {
+                    rv_notes_list.visibility = View.GONE
+                    tv_no_records_available.visibility = View.VISIBLE
+                    Toast.makeText(
+                        this,
+                        getString(R.string.error_fetching_data),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
 
     fun onDeleteClick(viewHolder: RecyclerView.ViewHolder, note: Note) {

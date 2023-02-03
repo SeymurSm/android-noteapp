@@ -2,22 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent">
+
     <ImageView
         android:id="@+id/iv_note_image"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
+        android:layout_gravity="center|right"
         android:contentDescription="@string/image_content_description"
         android:src="@mipmap/ic_launcher_round"
-        android:visibility="visible"
-        android:layout_gravity="center|right"
-        />
+        android:visibility="visible" />
 
     <View
         android:id="@+id/v_blur"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:visibility="visible"
         android:layout_gravity="left|center"
         android:background="@drawable/custom_view_gradient"
-        />
+        android:visibility="visible" />
 </FrameLayout>

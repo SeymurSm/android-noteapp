@@ -8,17 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary_text_color">#212121</color>
-    <color name="secondary_text_color">#9AA2AF</color>
+    <color name="primary_text_color">#FFFFFF</color>
+    <color name="secondary_text_color">#BABABA</color>
     <color name="white_color">#FFFFFF</color>
-    <color name="button_background_color">#F4D03F</color>
+    <color name="button_background_color">@color/purple_200</color>
     <color name="edited_note_status_color">#F5B041</color>
-    <color name="item_note_background">#FFFFFFFF</color>
+    <color name="item_note_background">#313141</color>
     <color name="item_note_divider">#e7eecc</color>
     <color name="item_edit_background">#24AE05</color>
     <color name="item_delete_background">#f44336</color>
-    <color name="item_note_description_text_color">#606060</color>
-    <color name="item_image_gradient_color">#ffffff</color>
+    <color name="item_note_description_text_color">#BABABA</color>
+    <color name="item_image_gradient_color">#313141</color>
 
     <color name="detail_screen_description_text_color">#757575</color>
 
