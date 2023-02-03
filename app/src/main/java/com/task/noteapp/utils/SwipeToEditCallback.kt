@@ -1,10 +1,12 @@
 package com.task.noteapp.utils
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -18,10 +20,10 @@ abstract class SwipeToEditCallback(context: Context) :
     val intrinsicWidth = editIcon!!.intrinsicWidth
     val intrinsicHeight = editIcon!!.intrinsicHeight
     val background = ColorDrawable()
+
     @RequiresApi(Build.VERSION_CODES.M)
     val backgroundColor = context.getColor(R.color.item_edit_background)
     val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
-
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
