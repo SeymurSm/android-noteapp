@@ -1,6 +1,7 @@
 package com.task.noteapp.view
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -159,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, AddNoteActivity::class.java)
                 intent.putExtra(
                     MainActivity.EXTRA_NOTE_DETAILS,
-                    noteList[viewHolder.adapterPosition]
+                    viewModel.noteList.value!![viewHolder.adapterPosition]
                 )
                 startActivityForResult(
                     intent,
@@ -176,7 +177,7 @@ class MainActivity : AppCompatActivity() {
 
         val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                onDeleteClick(viewHolder, noteList[viewHolder.adapterPosition])
+                onDeleteClick(viewHolder, viewModel.noteList.value!![viewHolder.adapterPosition])
             }
         }
         val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
