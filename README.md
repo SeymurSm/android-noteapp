@@ -14,13 +14,7 @@ Simple note app that allows the user to save/edit/delete any kind of note and di
 * There is a way to edit/delete previously created notes. Edited notes contains an (edited) tag while being displayed on the list.
 * All data persisted locally by SQLite. 
 
-### UI Suggestions ###
 
-It doesn't need to be super pretty, but it shouldn't be broken as well. The design is mostly up to you as long as creating, listing and editing/deleting features are available to use.
-
-Nice to have:
-* Animations/Transitions
-* At least one custom view
 
 
 
